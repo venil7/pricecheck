@@ -1,0 +1,7 @@
+{
+  "name": "price_check",
+  "dependencies": {
+    "angular": "~1.2.0",
+    "bootstrap": "~3.0.2"
+  }
+}
