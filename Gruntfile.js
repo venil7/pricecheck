@@ -13,15 +13,15 @@ module.exports = function(grunt){
           },
           prod: {
             files: {
-              'js/app.min.js': 
+              'dist/app.min.js': 
                 [
-                  'js/app.js'
+                  'js/*.js'
                 ]
             }
           },
         },
 
-        concat: {
+        /*concat: {
             prod: {
               files: {
                 'dist/script.min.js':
@@ -32,7 +32,7 @@ module.exports = function(grunt){
                 ]
             }
           }
-        },
+        },*/
 
         less: {
           prod: {
@@ -41,6 +41,18 @@ module.exports = function(grunt){
             }
           }
         },
+
+        watch: {
+          js: {
+            files: ['js/*.js'],
+            tasks: ['prod-js']
+          },
+
+          less: {
+            files: ['style/*.less'],
+            tasks: ['prod-css']
+          }
+        }
 
         /*cssmin: {
           prod: {
@@ -51,7 +63,7 @@ module.exports = function(grunt){
         }*/
     });
 
-    grunt.registerTask('prod-js', ['uglify:prod', 'concat:prod']);
+    grunt.registerTask('prod-js', ['uglify:prod'/*, 'concat:prod'*/]);
     grunt.registerTask('prod-css', ['less:prod'/*, 'cssmin:prod'*/]);
     
     grunt.registerTask('default', ['prod-js','prod-css']);

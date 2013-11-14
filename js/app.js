@@ -2,7 +2,7 @@
   
   "use strict";
 
-  var app = angular.module('pricecheck', []);
+  var app = angular.module('pricecheck', ['ngTouch']);
 
   // buy 1 get 1 free strategy
   app.factory('bogofStrategy', function() {
@@ -33,9 +33,10 @@
     };
   });
 
-  app.controller('mainCtrl', function() {
+  app.controller('mainCtrl', ['$scope', 'bogofStrategy', 'xForPriceStrategy', 'singleItemStrategy',
+    function($scope, strategy1, strategy2, strategy3) {
 
-  });
+  }]);
 
 }();
 
