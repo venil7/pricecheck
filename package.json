@@ -8,6 +8,10 @@
     "grunt-contrib-less": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-concat": "*",
-    "matchdep": "*"
+    "matchdep": "*",
+    "grunt-shell": "~0.5.0"
+  },
+  "scripts": {
+    "start": "static ./ --port 3000"
   }
 }

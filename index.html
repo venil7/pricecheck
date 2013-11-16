@@ -9,9 +9,27 @@
     <section class="main" ng-app="pricecheck">
       
       <div ng-controller="mainCtrl">
-        <form>
+        <form 
+          name="addForm"
+          ng-submit="add({price: price, units: units, count: count}, strategy)">
+          <select 
+              ng-model="strategy"
+              ng-options="p.name for p in strategies"
+              ng-required="true"
+              ng-change="count=strategy.count"
+              required>
+          </select>
+          <input type="number" ng-model="price" placeholder="Price, eg. $12.99" ng-required="true" required min="0.01" step="0.01">
+          <input type="number" ng-model="units" placeholder="Item Size, eg. 1.0Kg" ng-required="true" required min="0.01" step="0.01">
+          <input type="number" ng-model="count" placeholder="Number of items" ng-required="true" required min="1" step="1" ng-readonly="strategy.count!=undefined">
+          <input type="submit">
         </form>
+        <button ng-click="clear()">Clear</button>
         <ul class="offer-list">
+          <li ng-repeat="(key, value) in offers">
+            Price per one unit: 
+            ${{value.strategy.calculateUnitPrice(value.data.price, value.data.units, value.data.count)}}
+          </li>
         </ul>
       </div>
 
@@ -22,6 +40,7 @@
     <script src="bower_components/angular-touch/angular-touch.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     
+    <!-- // <script src="js/app.js"></script> -->
     <script src="dist/app.min.js"></script>
   </body>
 </html>

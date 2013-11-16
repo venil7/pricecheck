@@ -52,6 +52,12 @@ module.exports = function(grunt){
             files: ['style/*.less'],
             tasks: ['prod-css']
           }
+        },
+
+        shell: {
+          webserver: {
+            command: 'static'
+          }
         }
 
         /*cssmin: {
