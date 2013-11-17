@@ -1,5 +1,5 @@
 !function(){
-  
+
   "use strict";
 
   var app = angular.module('pricecheck', ['ngTouch']);
@@ -36,24 +36,25 @@
     return this;
   });
 
-  app.controller('mainCtrl', ['$scope', 
+  app.controller('mainCtrl', ['$scope',
     'bogofStrategy', 'xForPriceStrategy', 'singleItemStrategy',
     function($scope, s1, s2, s3) {
       $scope.strategies = [s1, s2, s3];
       $scope.offers = [];
 
       var resetForm = function() {
-        $scope.strategy = null;
-        $scope.price = null;
-        $scope.units = null;
-        $scope.count = null;
-        $scope.addForm.$setPristine();
+        $scope.offer.strategy = null;
+        $scope.offer.price = null;
+        $scope.offer.units = null;
+        $scope.offer.count = null;
       };
 
-      $scope.add = function(data, strategy) {
+      $scope.add = function(offer) {
         $scope.offers.push({
-          data: data,
-          strategy: strategy
+            strategy: offer.strategy,
+            count: offer.count,
+            price: offer.price,
+            units: offer.units
         });
         resetForm();
       };
@@ -61,6 +62,10 @@
       $scope.clear = function() {
         $scope.offers.length = 0;
         resetForm();
+      };
+
+      $scope.remove = function(k) {
+        $scope.offers.splice(k, 1);
       };
 
   }]);
