@@ -43,18 +43,15 @@
       $scope.offers = [];
 
       var resetForm = function() {
-        $scope.offer.strategy = null;
-        $scope.offer.price = null;
-        $scope.offer.units = null;
-        $scope.offer.count = null;
+        $scope.offer.data = {};
       };
 
-      $scope.add = function(offer) {
+      $scope.add = function(data) {
         $scope.offers.push({
-            strategy: offer.strategy,
-            count: offer.count,
-            price: offer.price,
-            units: offer.units
+            strategy: data.strategy,
+            count: data.count,
+            price: data.price,
+            units: data.units
         });
         resetForm();
       };
