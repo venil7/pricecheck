@@ -3,9 +3,9 @@ module.exports = function(grunt){
     require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
-    
+
         pkg: grunt.file.readJSON('package.json'),
-        
+
         uglify: {
           options: {
             banner: '\n/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
@@ -13,7 +13,7 @@ module.exports = function(grunt){
           },
           prod: {
             files: {
-              'dist/app.min.js': 
+              'dist/app.min.js':
                 [
                   'js/*.js'
                 ]
@@ -58,6 +58,10 @@ module.exports = function(grunt){
           webserver: {
             command: 'static'
           }
+        },
+
+        mocha_phantomjs: {
+           all: ['test/**/*.html']
         }
 
         /*cssmin: {
@@ -71,7 +75,7 @@ module.exports = function(grunt){
 
     grunt.registerTask('prod-js', ['uglify:prod'/*, 'concat:prod'*/]);
     grunt.registerTask('prod-css', ['less:prod'/*, 'cssmin:prod'*/]);
-    
+
     grunt.registerTask('default', ['prod-js','prod-css']);
 
 };
